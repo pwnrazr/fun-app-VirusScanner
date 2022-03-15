@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         successDialog.setTitle("Success")
         successDialog.setMessage("Viruses successfully deleted!")
         successDialog.setPositiveButton("More kishes \uD83D\uDE18\uD83D\uDE18\uD83D\uDE18") { dialog, which ->
-
         }
 
         class RunnableSuccess: Runnable {
