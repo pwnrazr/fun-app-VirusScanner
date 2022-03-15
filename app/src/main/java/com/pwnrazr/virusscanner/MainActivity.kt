@@ -28,6 +28,16 @@ class MainActivity : AppCompatActivity() {
 
         var randomNum = 0
 
+        fun animateTextView(initialValue: Int, finalValue: Int, textview: TextView) {
+            val valueAnimator = ValueAnimator.ofInt(initialValue, finalValue)
+            textview.text = "0"
+            valueAnimator.duration = 1500 //ms
+            valueAnimator.addUpdateListener { valueAnimator ->
+                textview.text = valueAnimator.animatedValue.toString()
+            }
+            valueAnimator.start()
+        }
+
         // Startup message
         val startUpMessage = AlertDialog.Builder(this)
         startUpMessage.setTitle("Welcome")
@@ -52,16 +62,6 @@ class MainActivity : AppCompatActivity() {
             deleteVirus()
         }
 
-        fun animateTextView(initialValue: Int, finalValue: Int, textview: TextView) {
-            val valueAnimator = ValueAnimator.ofInt(initialValue, finalValue)
-            textview.text = "0"
-            valueAnimator.duration = 1500 //ms
-            valueAnimator.addUpdateListener { valueAnimator ->
-                textview.text = valueAnimator.animatedValue.toString()
-            }
-            valueAnimator.start()
-        }
-
         class SimpleRunnable: Runnable {
             override fun run() {
                 while(!Thread.currentThread().isInterrupted && isScanning)
@@ -73,14 +73,14 @@ class MainActivity : AppCompatActivity() {
 
                         doingText.text = "Scanning complete"
                         progressBar.visibility = View.INVISIBLE
-                        Log.d("myApp","Stopped")
+                        Log.d("virusScanner","Stopped Thread increase value")
                         val mHandler = Handler(Looper.getMainLooper())
 
                     mHandler.post(Runnable {
                             virusDialog.show()
                         })
                     }
-                    Log.d("myApp","Running")
+                    Log.d("virusScanner","Running Thread increase value")
                 }
             }
         }
