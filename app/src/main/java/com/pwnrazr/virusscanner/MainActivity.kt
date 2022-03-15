@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         startUpMessage.show()
 
         fun deleteVirus() {
-            doingText.text = "Test"
+            doingText.text = "Deleting viruses\nfor my ayang"
+            animateTextView(randomNum, 0, virusAmtText)
         }
 
         // Viruses found dialog
