@@ -1,6 +1,7 @@
 package com.pwnrazr.virusscanner
 
 import android.animation.ValueAnimator
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -36,11 +37,20 @@ class MainActivity : AppCompatActivity() {
         }
         startUpMessage.show()
 
+        fun deleteVirus() {
+            doingText.text = "Test"
+        }
+
         // Viruses found dialog
         val virusDialog = AlertDialog.Builder(this)
         virusDialog.setTitle("Virus detected!")
-        virusDialog.setMessage("Viruses found on your device")
-        virusDialog.setPositiveButton("Okay") { dialog, which ->
+        virusDialog.setMessage("Viruses found on your device!\n" +
+                "To remove viruses you must give kishes to Amir")
+        virusDialog.setPositiveButton("I agree \uD83D\uDE18") { dialog, which ->
+            deleteVirus()
+        }
+        virusDialog.setNegativeButton("I agree \uD83D\uDE18") { dialog, which ->
+            deleteVirus()
         }
 
         fun animateTextView(initialValue: Int, finalValue: Int, textview: TextView) {
