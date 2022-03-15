@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                     if(virusAmtText.text == "0")
                     {
                         Thread.currentThread().interrupt()
-                        doingText.text = "I love you yayang\n\uD83D\uDE18❤"
+                        doingText.text = "I love you Alya\n\uD83D\uDE18❤"
                         Log.d("virusScanner","Stopped Thread check success")
                         val mHandler = Handler(Looper.getMainLooper())
 
