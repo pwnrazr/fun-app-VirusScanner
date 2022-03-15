@@ -2,6 +2,8 @@ package com.pwnrazr.virusscanner
 
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -10,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +28,20 @@ class MainActivity : AppCompatActivity() {
 
         var randomNum = 0
 
+        // Startup message
         val startUpMessage = AlertDialog.Builder(this)
         startUpMessage.setTitle("Welcome")
         startUpMessage.setMessage("Thank you for using Virus Scanner by Pwnrazr")
-
         startUpMessage.setPositiveButton("Okay") { dialog, which ->
         }
         startUpMessage.show()
+
+        // Viruses found dialog
+        val virusDialog = AlertDialog.Builder(this)
+        virusDialog.setTitle("Virus detected!")
+        virusDialog.setMessage("Viruses found on your device")
+        virusDialog.setPositiveButton("Okay") { dialog, which ->
+        }
 
         fun animateTextView(initialValue: Int, finalValue: Int, textview: TextView) {
             val valueAnimator = ValueAnimator.ofInt(initialValue, finalValue)
@@ -55,6 +65,11 @@ class MainActivity : AppCompatActivity() {
                         doingText.text = "Scanning complete"
                         progressBar.visibility = View.INVISIBLE
                         Log.d("myApp","Stopped")
+                        val mHandler = Handler(Looper.getMainLooper())
+
+                    mHandler.post(Runnable {
+                            virusDialog.show()
+                        })
                     }
                     Log.d("myApp","Running")
                 }
