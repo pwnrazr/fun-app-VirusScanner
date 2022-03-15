@@ -1,7 +1,6 @@
 package com.pwnrazr.virusscanner
 
 import android.animation.ValueAnimator
-import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        val alertDialogBuilder = AlertDialog.Builder(this)
+
         button.setOnClickListener {
             if(!isScanning) {
                 virusAmtText.text = "0"
