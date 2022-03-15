@@ -46,9 +46,39 @@ class MainActivity : AppCompatActivity() {
         }
         startUpMessage.show()
 
+        // Success dialog
+        val successDialog = AlertDialog.Builder(this)
+        successDialog.setTitle("Success")
+        successDialog.setMessage("Viruses successfully deleted!")
+        successDialog.setPositiveButton("More kishes \uD83D\uDE18\uD83D\uDE18\uD83D\uDE18") { dialog, which ->
+
+        }
+
+        class RunnableSuccess: Runnable {
+            override fun run() {
+                while(!Thread.currentThread().isInterrupted)
+                {
+                    if(virusAmtText.text == "0")
+                    {
+                        Thread.currentThread().interrupt()
+                        doingText.text = "I love you yayang\n\uD83D\uDE18❤"
+                        Log.d("virusScanner","Stopped Thread check success")
+                        val mHandler = Handler(Looper.getMainLooper())
+
+                        mHandler.post(Runnable {
+                            successDialog.show()
+                        })
+                    }
+                    Log.d("virusScanner","Running Thread check success")
+                }
+            }
+        }
+
         fun deleteVirus() {
             doingText.text = "Deleting viruses\nfor my ayang"
             animateTextView(randomNum, 0, virusAmtText)
+            val successThread = Thread(RunnableSuccess())
+            successThread.start()
         }
 
         // Viruses found dialog
